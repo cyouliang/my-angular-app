@@ -29,3 +29,8 @@ steps:
     ng build --prod
   displayName: 'npm install and build'
 
+- task: CopyFiles@2
+  inputs:
+    targetFolder: '$(Build.ArtifactStagingDirectory)'    
+- task: PublishBuildArtifacts@1
+
