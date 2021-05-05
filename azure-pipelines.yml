@@ -38,23 +38,10 @@ stages:
             command: custom
             customCommand: run build -- --prod
 
-          # ...
-          # do this after other tasks such as building
-        - task: DotNetCoreCLI@2
-          inputs:
-            command: test
-            projects: '**/*Tests/*.csproj'
-            arguments: '--configuration $(buildConfiguration)'
-        
-        - task: PublishTestResults@2
-          inputs:
-            testResultsFormat: 'JUnit'
-            testResultsFiles: '**/TEST-*.xml'
-          displayName: 'Publish Test Results'
-        
         - task: PublishBuildArtifacts@1
           displayName: Publish Angular app dist folder artifact
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
             ArtifactName: 'angular-app'
             publishLocation: 'Container'
+            
