@@ -39,9 +39,7 @@ stages:
             customCommand: run build -- --prod
 
         - task: PublishBuildArtifacts@1
-          displayName: Publish Angular app dist folder artifact
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: 'angular-app'
+            ArtifactName: 'drop'
             publishLocation: 'Container'
-            
