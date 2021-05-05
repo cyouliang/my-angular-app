@@ -1,4 +1,4 @@
-# Starter pipeline
+ # Starter pipeline
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -51,30 +51,12 @@ stages:
             testResultsFormat: 'JUnit'
             testResultsFiles: '**/TEST-*.xml'
           displayName: 'Publish Test Results'
-
-        - task: ArchiveFiles@2
-          displayName: Zip Angular dist folder
-          inputs:
-            rootFolderOrFile: 'src/multistage-pipeline-demo/dist/multistage-pipeline-demo'
-            includeRootFolder: false
-            archiveType: 'zip'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/multistage-pipeline-demo.zip'
-            replaceExistingArchive: true
         
         - task: PublishBuildArtifacts@1
           displayName: Publish Angular app dist folder artifact
           inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)/multistage-pipeline-demo.zip'
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
             ArtifactName: 'angular-app'
-            publishLocation: 'Container'
-
-      - job: PublishARMArtifacts
-        displayName: Publish ARM artifact
-        steps:
-        - task: PublishBuildArtifacts@1
-          inputs:
-            PathtoPublish: 'src/MultiStagePipeline/AzureResourceGroup.Infrastructure'
-            ArtifactName: 'arm-template'
             publishLocation: 'Container'
 
   - stage: DeployToDev
