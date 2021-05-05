@@ -30,7 +30,6 @@ stages:
         - task: Npm@1
           inputs:
             command: 'install'
-            workingDir: 'src/multistage-pipeline-demo'
           displayName: 'Install angular app packages'
 
         - task: Npm@1
@@ -38,7 +37,6 @@ stages:
           inputs:
             command: custom
             customCommand: run build -- --prod
-            workingDir: src/multistage-pipeline-demo
 
           # ...
           # do this after other tasks such as building
